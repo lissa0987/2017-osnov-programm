@@ -186,7 +186,7 @@ for my_word in range(len(token)):
             for i in range(space):
                 spaces += ' '
 
-print(m + spaces + "—" + "            " + "—" + "            " + "—" + "            " + "            " + "—" + "Translit=" + tr_word)       
+print(m + spaces + "—" + "\t" + "—" + "\t" + "—" + "\t" + "\t" + "—" + "Translit=" + tr_word)       
 
 print(tr_word)
 
