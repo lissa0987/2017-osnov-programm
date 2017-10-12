@@ -103,8 +103,8 @@ for i in range(len(sentence)):
             for i in range(space):
                 spaces += ' '
 
-            print(m + spaces + "—" + "\t" + "—" + "\t" + "—" + "\t" + "\t" + "—" + "\t" + "—" + " \t" + "—" + "\t" + "—" + "\t" + "—" )
-
+            #print(m + spaces + "—" + "\t" + "—" + "\t" + "—" + "\t" + "\t" + "—" + "\t" + "—" + " \t" + "—" + "\t" + "—" + "\t" + "—" )
+            print(m + "\t" + "—" + "\t" + "—" + "\t" + "—" + "\t" + "\t" + "—" + "\t" + "—" + " \t" + "—" + "\t" + "—" + "\t" + "—" )
         final_list_of_sign = []
         ex_sign = []
         three_stops = []
