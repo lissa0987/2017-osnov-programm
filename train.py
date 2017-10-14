@@ -1,15 +1,17 @@
 import re
 import nltk
+import sys
 
-a = open('wiki.txt', 'r')
-text = ''
+tokens = []
+for i in sys.stdin.readlines():	
+    if i[0] == '#':
+        continue
+    else:
+        search_pattern = re.match('\w+|\:|\,|\.+|\!|\?|\(\)|\"\"|\%|\—|\„\“', i) 
+        if search_pattern:
 
-for i in a.readlines():
-    text += i
-print(type(text))
-tokens = nltk.word_tokenize(text)
-print(tokens)
-
+            words = search_pattern.group(0)
+            tokens.append(words)
 
 with open('tokens.txt', 'r', encoding='utf-8') as file:
     tags = {}
@@ -18,8 +20,11 @@ with open('tokens.txt', 'r', encoding='utf-8') as file:
     #for i in file.readlines():
         #print(i)
     for u in file:
-        no_frequency = u[9:]
+        #print(u)
+        no_frequency = u[8:]   
+        #print(no_frequency)
         tag_text = no_frequency.split('/')
+        #print(tag_text)
         if len(tag_text) != 1:
 
             if tag_text[1][0:2] == "NN" or tag_text[1][0:2] == "Ve" or tag_text[1][0:2] == "AU":
@@ -63,7 +68,8 @@ tags[","] = "PUNCT"
 tags["„“"] = "PUNCT"
 tags[":"] = "PUNCT"
 tags["—"] = "PUNCT"
-print(tags)
+#print(tags)
+print(len(tokens))
 print(len(tags))
 
 tags_amount = 0
@@ -72,7 +78,7 @@ for i in tags:
     for u in range(len(tokens)):
         if i == tokens[u]:
             tags_and_tokens[tokens[u]] = tags[i]
-print(tags_and_tokens)
+#print(tags_and_tokens)
 
 words = len(tags_and_tokens)
 tags_amount = {}
@@ -81,13 +87,14 @@ count = 0
 
 for i in tags_and_tokens: 
     tags_amount[tags[i]] = tags_amount.get(tags[i],0) + 1
+
 for i in tags_and_tokens: 
     if i not in words_amount:
         words_amount[i] = 1
     else:
         word_amount[i] += 1
-print(words_amount)
-name= input()
+#print(words_amount)
+name = sys.argv[1]
 f = open(name, 'w')
 f.write('#P' + '\t' + 'count' + '\t' + 'tag' + '\t' + 'form' + '\n')
 words_am = len(tokens)
@@ -104,4 +111,3 @@ for i in words_amount:
 f.close()
     
                 
-
