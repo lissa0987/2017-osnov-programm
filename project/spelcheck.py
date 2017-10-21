@@ -97,7 +97,7 @@ def get_edits1():  # how we can trasform the word (where we can make a mistake)
             for e in range(len(alph)):
                 list_of_transformations.append(h + alph[e] + g)
         transfrom_vocab[word] = list_of_transformations
-                #list_of_transformations = []
+        list_of_transformations = []
     return transfrom_vocab
 
 
