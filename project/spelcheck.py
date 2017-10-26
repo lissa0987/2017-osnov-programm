@@ -138,7 +138,9 @@ def get_most_likely():  # spellchecking
                 distance = get_edit_distance(i, final_word)
                 print(i + '\t\t' + final_word + '\t\t' + str(distance))
                 corrections.append(final_word)
-
+        amount = 0
+        freq_word = ""
+        final_word = ''
 
     return corrections
 
