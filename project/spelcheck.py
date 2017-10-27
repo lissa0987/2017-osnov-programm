@@ -152,7 +152,7 @@ def get_most_likely():  # spellchecking
                 #print(sorted_vocab)
                 for e in range(4):
                     possible_word = variants[sorted_vocab[e]]
-                    print(possible_word + '\t\t' + str(sorted_vocab[e]))
+                    print('\t\t' + possible_word + '\t\t' + str(sorted_vocab[e]))
                         
 
                     #if amount < vocab.get(q,0):
