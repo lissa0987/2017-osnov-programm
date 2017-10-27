@@ -74,12 +74,14 @@ def get_edits1():  # how we can trasform the word (where we can make a mistake)
             second_part = word[i + 1:]
             first_part = word[:i]
             list_of_transformations.append(first_part + second_part)
+        print(list_of_transformations)
         transfrom_vocab[word] = list_of_transformations
         list_of_transformations = []
         for i in range(len(word) - 1):  # two letters replace each other (cat - cta...)
             second_part = word[i + 2:]
             first_part = word[:i]
             list_of_transformations.append(first_part + word[i + 1] + word[i] + second_part)
+        print(list_of_transformations)
         transfrom_vocab[word] = list_of_transformations
         list_of_transformations = []
         alph = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x',
@@ -89,6 +91,7 @@ def get_edits1():  # how we can trasform the word (where we can make a mistake)
             first_part = word[:i]
             for q in range(len(alph)):
                 list_of_transformations.append(first_part + alph[q] + second_part)
+        print(list_of_transformations)
         transfrom_vocab[word] = list_of_transformations
         list_of_transformations = []
         for i in range(len(word) + 1):  # a letter is inserted somewhere in the word
@@ -96,6 +99,7 @@ def get_edits1():  # how we can trasform the word (where we can make a mistake)
             h = word[:i]
             for e in range(len(alph)):
                 list_of_transformations.append(h + alph[e] + g)
+        print(list_of_transformations)
         transfrom_vocab[word] = list_of_transformations
         list_of_transformations = []
     return transfrom_vocab
@@ -105,7 +109,7 @@ def get_most_likely():  # spellchecking
     vocab = det_counts(get_words())  # form our vocab
     transformation = get_edits1()  # change the word
     #print(transformation)
-    word = get_text()
+    word = get_text()#words in text
     corrections = []
     #words_transformation = []
 
@@ -119,7 +123,6 @@ def get_most_likely():  # spellchecking
         amount = 0
         freq_word = ""
         final_word = ''
-
         words_transformation = transformation.get(i)
         for m in words_transformation:  # find the most frequent word
             if amount < vocab.get(m, 0):
@@ -138,10 +141,26 @@ def get_most_likely():  # spellchecking
                 print(i + '\t\t' + final_word + '\t\t'+ str(distance))
                 corrections.append(final_word)
             else:  # no word (and its transformation) in the vocab
-                final_word = i
-                distance = get_edit_distance(i, final_word)
-                print(i + '\t\t' + final_word + '\t\t' + str(distance))
-                corrections.append(final_word)
+                print(i + "\t\t" +'no correction is found:( Try these:')
+                words_in_the_ref_corp = get_words()
+                #for q in words_transformation:
+                variants = {}
+                for w in words_in_the_ref_corp:
+                    dist = get_edit_distance(i, w)
+                    variants[dist] = w
+                sorted_vocab = sorted(variants.keys())
+                #print(sorted_vocab)
+                for e in range(4):
+                    possible_word = variants[sorted_vocab[e]]
+                    print(possible_word + '\t\t' + str(sorted_vocab[e]))
+                        
+
+                    #if amount < vocab.get(q,0):
+                     #   the_most_frequent
+                
+                #corrections.append(final_word)
+
+
 
     return corrections
 
