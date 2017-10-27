@@ -116,6 +116,10 @@ def get_most_likely():  # spellchecking
     final_word = ''
 
     for i in word:
+        amount = 0
+        freq_word = ""
+        final_word = ''
+
         words_transformation = transformation.get(i)
         for m in words_transformation:  # find the most frequent word
             if amount < vocab.get(m, 0):
@@ -138,9 +142,6 @@ def get_most_likely():  # spellchecking
                 distance = get_edit_distance(i, final_word)
                 print(i + '\t\t' + final_word + '\t\t' + str(distance))
                 corrections.append(final_word)
-        amount = 0
-        freq_word = ""
-        final_word = ''
 
     return corrections
 
