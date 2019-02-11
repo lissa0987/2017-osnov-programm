@@ -60,7 +60,7 @@ for i in transliteration:
     f.write(transliteration[i].lower())
     f.write('\n')
 f.close()'''
-
+#do not know
 
 
 punct = ['.', ',', '?', '!', '„', ':', "(", "—"]
